@@ -36,7 +36,7 @@ public class DataInitializer implements CommandLineRunner {
 
         createUserIfNotFound("testUser", "teste_user@projuris.com.br", true, "testuser", "testuser", Arrays.asList( "ROLE_USER"));
 
-        log.info("printing all users...");
+        log.info("Printing all users...");
         this.users.findAll().forEach(v -> log.info(" User :" + v.toString()));
     }
 
