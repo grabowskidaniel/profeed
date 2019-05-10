@@ -16,9 +16,9 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/api")
 @Api(tags = "User")
-public class UserResource {
+public class UserController {
 
-    private final Logger log = LoggerFactory.getLogger(UserResource.class);
+    private final Logger log = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private UserService userService;
