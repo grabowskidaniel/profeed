@@ -11,9 +11,24 @@ import { AppComponent } from './app.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { AuthModule } from '@profeed/core/auth/auth.module';
+import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt';
+import { environment } from '../environments/environment';
+import { IonicStorageModule, Storage } from '@ionic/storage';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
+}
+
+export function jwtOptionsFactory(storage) {
+  return {
+    tokenGetter: () => {
+      return storage.get('access_token');
+    },
+    blacklistedRoutes: [
+      environment.serverURL + '/auth/signin'
+    ]
+  };
 }
 
 @NgModule({
@@ -22,6 +37,13 @@ export function HttpLoaderFactory(http: HttpClient) {
   imports: [
     BrowserModule,
     HttpClientModule,
+    JwtModule.forRoot({
+      jwtOptionsProvider: {
+        provide: JWT_OPTIONS,
+        useFactory: jwtOptionsFactory,
+        deps: [Storage]
+      }
+    }),
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -32,7 +54,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     IonicModule.forRoot({
       mode: 'md'
     }),
+    IonicStorageModule.forRoot(),
     AppRoutingModule,
+    AuthModule,
   ],
   providers: [
     StatusBar,

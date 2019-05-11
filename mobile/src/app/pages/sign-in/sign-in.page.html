@@ -1,5 +1,5 @@
 <ion-content>
-    <div class="bg-login"></div>
+    <div class="bg-login" [ngStyle]="{'background-image': 'url('+backgroundImage+')'}"></div>
     <div padding class="login-wrapper">
         <h1 class="app-name">{{'ProFeed'|translate}}</h1>
         <form class="form" padding>
@@ -14,7 +14,7 @@
                 <ion-input [placeholder]="'Senha' | translate" type="password"></ion-input>
             </ion-item>
             <hr>
-            <ion-button expand="block" shape="round" color="secondary" size="big">
+            <ion-button (click)="signIn()" expand="block" shape="round" color="secondary" size="big">
                 {{'entrar'|translate}}
             </ion-button>
         </form>

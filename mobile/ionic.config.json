@@ -1,5 +1,7 @@
 {
   "name": "profeed-mobile",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
