@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
@@ -26,8 +27,8 @@ public class UserController {
 
     @PostMapping(path = "/user")
     @ApiOperation(value = "Saving new user.")
-    public ResponseEntity<User> convert(@Valid @RequestBody User user) throws IOException {
-        log.debug("REST request to convert: {}", user);
+    public ResponseEntity<User> save(@Valid @RequestBody User user) throws IOException {
+        log.debug("REST request to save: {}", user);
         userService.save(user);
         return ResponseEntity.ok(user);
     }
@@ -37,9 +38,18 @@ public class UserController {
         userService.changePassword(passwordChangeDto.getCurrentPassword(), passwordChangeDto.getNewPassword());
     }
 
-    @GetMapping(path = "/user")
-    public String init(){
-        return  "ok";
+    @GetMapping(path = "/user/getAll")
+    @ApiOperation(value = "Get all users .")
+    public ResponseEntity<List<User>> getAll() throws IOException {
+        log.debug("REST request to getAll users");
+        List<User> list = userService.getAll();
+        return ResponseEntity.ok(list);
     }
-
+    @GetMapping(path = "/user/getAllActiveUsers")
+    @ApiOperation(value = "REST request to getAll active users")
+    public ResponseEntity<List<User>> getAllActiveUsers() throws IOException {
+        log.debug("REST request to getAll active users");
+        List<User> list = userService.getAllActiveRoleUser();
+        return ResponseEntity.ok(list);
+    }
 }
