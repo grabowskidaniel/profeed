@@ -1,0 +1,26 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-input class="header-search-input" [placeholder]="'Quem merece seu feedback hoje?' | translate"></ion-input>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-list>
+        <ng-container *ngFor="let employee of employers">
+            <ion-item lines="full" button>
+                <ion-avatar slot="start">
+                    <img [src]="employee.photoURL">
+                </ion-avatar>
+                <ion-label>
+                    <ion-text color="primary">
+                        <h2>
+                            {{employee.name}}
+                        </h2>
+                    </ion-text>
+                    <p>Desenvolvimento</p>
+                </ion-label>
+            </ion-item>
+        </ng-container>
+    </ion-list>
+</ion-content>
