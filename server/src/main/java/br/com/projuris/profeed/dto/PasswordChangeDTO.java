@@ -7,12 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class CountFeedbackDTO {
+public class PasswordChangeDTO {
 
-    private Long amountFeedbackTo;
-
-    private Long amountFeedbackFrom;
-
-    private Long userId;
+    private String currentPassword;
+    private String newPassword;
 
 }
