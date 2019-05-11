@@ -1,5 +1,6 @@
 package br.com.projuris.profeed.controller;
 
+import br.com.projuris.profeed.dto.PasswordChangeDTO;
 import br.com.projuris.profeed.entity.User;
 import br.com.projuris.profeed.service.UserService;
 import io.swagger.annotations.Api;
@@ -29,6 +30,11 @@ public class UserController {
         log.debug("REST request to convert: {}", user);
         userService.save(user);
         return ResponseEntity.ok(user);
+    }
+
+    @PostMapping(path = "/user/change-password")
+    public void changePassword(@RequestBody PasswordChangeDTO passwordChangeDto) {
+        userService.changePassword(passwordChangeDto.getCurrentPassword(), passwordChangeDto.getNewPassword());
     }
 
     @GetMapping(path = "/user")
