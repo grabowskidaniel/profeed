@@ -1,0 +1,22 @@
+<ion-content>
+    <div class="bg-login"></div>
+    <div padding class="login-wrapper">
+        <h1 class="app-name">{{'ProFeed'|translate}}</h1>
+        <form class="form" padding>
+            <ion-item lines="none" rounded>
+                <ion-icon name="mail" slot="start"></ion-icon>
+                <ion-input inputmode="email" type="email" [autofocus]="true"
+                           [placeholder]="'E-mail' | translate"></ion-input>
+            </ion-item>
+            <hr>
+            <ion-item lines="none" rounded>
+                <ion-icon name="key" slot="start"></ion-icon>
+                <ion-input [placeholder]="'Senha' | translate" type="password"></ion-input>
+            </ion-item>
+            <hr>
+            <ion-button expand="block" shape="round" color="secondary" size="big">
+                {{'entrar'|translate}}
+            </ion-button>
+        </form>
+    </div>
+</ion-content>
