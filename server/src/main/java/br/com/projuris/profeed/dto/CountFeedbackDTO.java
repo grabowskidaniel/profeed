@@ -1,18 +1,18 @@
 package br.com.projuris.profeed.dto;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 public class CountFeedbackDTO {
 
-    private Integer amountFeedbackTo;
+    private Long amountFeedbackTo;
 
-    private Integer amountFeedbackFrom;
+    private Long amountFeedbackFrom;
 
-    private Integer userId;
+    private Long userId;
 
 }
