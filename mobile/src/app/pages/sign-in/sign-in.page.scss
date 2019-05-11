@@ -37,3 +37,7 @@ ion-content {
   z-index: 2;
   position: relative;
 }
+
+:host /deep/ ng-component .help.is-danger {
+  color: #ffffff;
+}

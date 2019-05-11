@@ -24,3 +24,8 @@ ion-item[rounded] {
   border-radius: 30px;
   overflow: hidden;
 }
+
+
+ion-content /deep/ ng-component .help.is-danger{
+  color: #ff3860;
+}

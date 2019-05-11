@@ -15,6 +15,8 @@ import { AuthModule } from '@profeed/core/auth/auth.module';
 import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt';
 import { environment } from '../environments/environment';
 import { IonicStorageModule, Storage } from '@ionic/storage';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProFeedFormsModule } from '@profeed/core/forms';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -44,6 +46,8 @@ export function jwtOptionsFactory(storage) {
         deps: [Storage]
       }
     }),
+    FormsModule,
+    ReactiveFormsModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -57,6 +61,7 @@ export function jwtOptionsFactory(storage) {
     IonicStorageModule.forRoot(),
     AppRoutingModule,
     AuthModule,
+    ProFeedFormsModule,
   ],
   providers: [
     StatusBar,
