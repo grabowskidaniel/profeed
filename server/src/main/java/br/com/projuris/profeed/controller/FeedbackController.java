@@ -1,8 +1,7 @@
 package br.com.projuris.profeed.controller;
 
+import br.com.projuris.profeed.dto.CountFeedbackDTO;
 import br.com.projuris.profeed.entity.Feedback;
-import br.com.projuris.profeed.entity.User;
-import br.com.projuris.profeed.security.jwt.JwtTokenProvider;
 import br.com.projuris.profeed.service.FeedbackService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -50,9 +49,9 @@ public class FeedbackController {
 
     @GetMapping(path = "/feedback/count")
     @ApiOperation(value = "Count all feedback from and To.")
-    public List<Feedback> countAllFromAndTo(){
-        List<Feedback> feedbacks = this.feedbackService.findAllFrom();
-        return feedbacks;
+    public ResponseEntity<CountFeedbackDTO> countAllFromAndTo(){
+        CountFeedbackDTO countFeedbackDTO = this.feedbackService.countAllByUser();
+        return ResponseEntity.ok(countFeedbackDTO);
     }
 
 }
