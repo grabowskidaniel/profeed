@@ -1,13 +1,12 @@
 package br.com.projuris.profeed.service;
 
+import br.com.projuris.profeed.dto.CountFeedbackDTO;
 import br.com.projuris.profeed.entity.Feedback;
 import br.com.projuris.profeed.entity.User;
 import br.com.projuris.profeed.repository.FeedbackRepository;
 import br.com.projuris.profeed.repository.UserRepository;
 import br.com.projuris.profeed.util.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -22,6 +21,11 @@ public class FeedbackService {
 
     @Autowired
     private UserRepository userRepository;
+
+    FeedbackService(FeedbackRepository feedbackRepository, UserRepository userRepository) {
+        this.feedbackRepository = feedbackRepository;
+        this.userRepository = userRepository;
+    }
 
     public Feedback save(Feedback feedback) {
         userRepository.findById(feedback.getUserFromId()).ifPresent(userFrom -> {
@@ -49,5 +53,18 @@ public class FeedbackService {
             return this.feedbackRepository.findAllByUserFrom(userFrom.get());
         }
         return new ArrayList<>();
+    }
+
+    public CountFeedbackDTO countAllByUser() {
+        String username = SecurityUtils.getCurrentUserLogin().get();
+        Optional<User> user = this.userRepository.findByUsername(username);
+        if(user.isPresent()) {
+            CountFeedbackDTO dto = new CountFeedbackDTO();
+            dto.setUserId(user.get().getId());
+            dto.setAmountFeedbackFrom(this.feedbackRepository.countAllByUserFrom(user.get()));
+            dto.setAmountFeedbackTo(this.feedbackRepository.countAllByUserTo(user.get()));
+            return dto;
+        }
+        return new CountFeedbackDTO();
     }
 }

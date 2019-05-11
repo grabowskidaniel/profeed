@@ -14,4 +14,8 @@ public interface FeedbackRepository  extends JpaRepository<Feedback, Long> {
 
     List<Feedback> findAllByUserFrom(User userFrom);
 
+    Long countAllByUserTo(User userTo);
+
+    Long countAllByUserFrom(User userFrom);
+
 }
