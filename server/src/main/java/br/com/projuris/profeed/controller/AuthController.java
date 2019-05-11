@@ -19,7 +19,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static org.springframework.http.ResponseEntity.ok;
-import static org.springframework.http.ResponseEntity.ok;
 
 @RestController
 @RequestMapping("/auth")
@@ -30,6 +29,7 @@ public class AuthController {
     JwtTokenProvider jwtTokenProvider;
     @Autowired
     UserRepository users;
+
     @PostMapping("/signin")
     public ResponseEntity signin(@RequestBody AuthenticationRequest data) {
         try {
