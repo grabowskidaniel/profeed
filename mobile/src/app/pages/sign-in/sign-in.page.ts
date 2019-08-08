@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Utils } from '@profeed/core/utils';
 import { AuthService } from '@profeed/core/auth/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sign-in',
@@ -21,6 +22,7 @@ export class SignInPage implements OnInit {
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
+    private readonly navCtrl: NavController,
   ) {
     const imageIndex = Utils.random(0, this.backgroundImages.length);
     this.backgroundImage = this.backgroundImages[imageIndex];
@@ -46,6 +48,7 @@ export class SignInPage implements OnInit {
       password: 'admin',
     }).subscribe((resp) => {
       console.log(resp);
+      this.navCtrl.navigateRoot('tab/tabs/home', {replaceUrl: true});
     });
   }
 

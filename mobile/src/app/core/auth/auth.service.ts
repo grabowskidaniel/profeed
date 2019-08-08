@@ -52,8 +52,8 @@ export class AuthService {
   }
 
   private async handleJwtResponse(jwt: string): Promise<void> {
-    const jwtData = JSON.parse(jwt);
-    await this.storage.set(this.jwtTokenName, jwtData.id_token);
-    this.authUser.next(jwtData.id_token);
+
+    await this.storage.set(this.jwtTokenName, jwt);
+    this.authUser.next(jwt);
   }
 }
