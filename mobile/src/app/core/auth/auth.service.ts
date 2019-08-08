@@ -52,8 +52,10 @@ export class AuthService {
   }
 
   private async handleJwtResponse(jwt: string): Promise<void> {
+    console.log(jwt);
+    this.storage.set(this.jwtTokenName, jwt);
 
-    await this.storage.set(this.jwtTokenName, jwt);
+    console.log(this.storage.get("jwt_token"));
     this.authUser.next(jwt);
   }
 }
