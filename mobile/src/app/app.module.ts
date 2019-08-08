@@ -9,7 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { AuthModule } from '@profeed/core/auth/auth.module';
 import { JWT_OPTIONS, JwtModule } from '@auth0/angular-jwt';
@@ -17,6 +17,8 @@ import { environment } from '../environments/environment';
 import { IonicStorageModule, Storage } from '@ionic/storage';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ProFeedFormsModule } from '@profeed/core/forms';
+import { AuthInterceptor } from './core/auth/auth.interceptor';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -25,7 +27,7 @@ export function HttpLoaderFactory(http: HttpClient) {
 export function jwtOptionsFactory(storage) {
   return {
     tokenGetter: () => {
-      return storage.get('access_token');
+      return storage.get('jwt_token');
     },
     blacklistedRoutes: [
       environment.serverURL + '/auth/signin'
@@ -66,7 +68,8 @@ export function jwtOptionsFactory(storage) {
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: RouteReuseStrategy, useClass: IonicRouteStrategy}
+    {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

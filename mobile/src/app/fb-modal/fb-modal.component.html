@@ -1,0 +1,22 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-title>FeedBack</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen>
+  <form onsubmit="processForm(event)">
+    <ion-title>Novo feedback para: Fulano</ion-title>
+    <!-- <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item> -->
+        <!-- <ion-label position="stacked">FeedBack</ion-label> -->
+        <ion-textarea rows="10" style="background-color: slategrey"></ion-textarea>
+      <!-- </ion-item>
+    </ion-list> -->
+    <div class="ion-padding">
+      <ion-button expand="block"  class="ion-no-margin"  (click)="send()" >Enviar :)</ion-button>
+    </div>
+  </form>
+</ion-content>

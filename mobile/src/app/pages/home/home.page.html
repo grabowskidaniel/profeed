@@ -8,7 +8,7 @@
 
     <ion-list>
         <ng-container *ngFor="let employee of employers">
-            <ion-item lines="full" button>
+            <ion-item lines="full" button (click)="presentModal()">
                 <ion-avatar slot="start">
                     <img [src]="employee.photoURL">
                 </ion-avatar>

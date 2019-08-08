@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController} from '@ionic/angular';
+import {FbModalComponent} from '../..//fb-modal/fb-modal.component'
 
 @Component({
   selector: 'app-home',
@@ -25,10 +27,17 @@ export class HomePage implements OnInit {
     }
   ];
 
-  constructor() {
+  constructor(public modalController:ModalController) {
   }
 
   ngOnInit() {
+  }
+
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: FbModalComponent
+    });
+    return await modal.present();
   }
 
 }

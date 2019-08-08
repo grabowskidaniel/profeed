@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 
 import { HomePage } from './home.page';
 import { SharedModule } from '@profeed/shared/shared.module';
+import { FbModalComponent } from '@profeed/fb-modal/fb-modal.component';
 
 const routes: Routes = [
   {
@@ -23,7 +24,7 @@ const routes: Routes = [
     SharedModule,
     RouterModule.forChild(routes),
   ],
-  declarations: [HomePage]
+  declarations: [HomePage, FbModalComponent], entryComponents:[FbModalComponent]
 })
 export class HomePageModule {
 }
