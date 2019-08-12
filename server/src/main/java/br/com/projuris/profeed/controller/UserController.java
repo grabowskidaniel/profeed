@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static java.util.stream.Collectors.toList;
@@ -47,8 +48,8 @@ public class UserController {
     }
 
     @GetMapping(path = "/user")
-    public String init(){
-        return  "ok";
+    public List<User> findAll(){
+        return  userService.findAllUsers();
     }
 
     @GetMapping("/me")

@@ -29,7 +29,7 @@ export class FbModalComponent implements OnInit {
   send(){
     console.log("enviar");
 
-    this.profeedService.send({
+    this.profeedService.sendFeedback({
       text: 'admin'
     });
 

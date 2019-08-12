@@ -87,12 +87,31 @@ public class User extends GenericEntity implements UserDetails {
         this.roles = roles;
     }
 
-    public User(@NotNull(message = "Name cannot be null") String nome, @NotNull(message = "Email cannot be null") @Email(message = "Email should be valid") String email, @NotNull(message = "Active cannot be null") Boolean active, @NotEmpty String username, @NotEmpty String password, List<String> roles) {
+    public User(@NotNull(message = "Name cannot be null") String nome,
+                @NotNull(message = "Email cannot be null") @Email(message = "Email should be valid") String email,
+                @NotNull(message = "Active cannot be null") Boolean active,
+                @NotEmpty String username,
+                @NotEmpty String password, List<String> roles) {
         this.nome = nome;
         this.email = email;
         this.active = active;
         this.username = username;
         this.password = password;
         this.roles = roles;
+    }
+
+    public User(@NotNull(message = "Name cannot be null") String nome,
+                @NotNull(message = "Email cannot be null") @Email(message = "Email should be valid") String email,
+                @NotNull(message = "Active cannot be null") Boolean active,
+                @NotEmpty String username,
+                @NotEmpty String password, List<String> roles,
+                String photoUrl) {
+        this.nome = nome;
+        this.email = email;
+        this.active = active;
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+        this.photoUrl = photoUrl;
     }
 }

@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -33,5 +36,13 @@ public class UserService {
                     user.setPassword(encryptedPassword);
                     this.userRepository.save(user);
                 });
+    }
+
+    public List<User> findAll(){
+        return userRepository.findAll();
+    }
+
+    public List<User> findAllUsers(){
+        return userRepository.findAllByRolesEqualsAndRolesIsNotContaining(Arrays.asList( "ROLE_USER"), Arrays.asList( "ROLE_ADMIN"));
     }
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController} from '@ionic/angular';
 import {FbModalComponent} from '../..//fb-modal/fb-modal.component'
+import {ProfeedService} from '@profeed/core/profeed.service'
+import { UserDTO } from '@profeed/domain/user-dto';
 
 @Component({
   selector: 'app-home',
@@ -9,28 +11,21 @@ import {FbModalComponent} from '../..//fb-modal/fb-modal.component'
 })
 export class HomePage implements OnInit {
 
-  employers = [
-    {
-      id: 1,
-      name: 'Alan Albuquerque',
-      photoURL: 'assets/mock/alan.jpeg'
-    },
-    {
-      id: 2,
-      name: 'Rodrigo Venturi',
-      photoURL: 'assets/mock/rodrigo.jpeg'
-    },
-    {
-      id: 3,
-      name: 'Erick Oliveira',
-      photoURL: 'assets/mock/erick.png'
-    }
-  ];
+  public usersList: Array<UserDTO> = [];
 
-  constructor(public modalController:ModalController) {
+  constructor(public modalController:ModalController, 
+    private profeedService:ProfeedService) {
   }
 
   ngOnInit() {
+    this.profeedService.getUsers().subscribe(data =>{
+        console.log("POST Request is successful ", data);
+        this.usersList = data.map((element)=> new UserDTO(element.id, element.nome, element.photoUrl));
+        console.log(this.usersList);
+      },
+      error  => {
+        console.log("Error", error);
+      })
   }
 
   async presentModal() {

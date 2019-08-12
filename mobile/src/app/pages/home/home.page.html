@@ -7,15 +7,15 @@
 <ion-content>
 
     <ion-list>
-        <ng-container *ngFor="let employee of employers">
+        <ng-container *ngFor="let user of usersList">
             <ion-item lines="full" button (click)="presentModal()">
                 <ion-avatar slot="start">
-                    <img [src]="employee.photoURL">
+                    <img [src]="user.photoUrl">
                 </ion-avatar>
                 <ion-label>
                     <ion-text color="primary">
                         <h2>
-                            {{employee.name}}
+                            {{user.nome}}
                         </h2>
                     </ion-text>
                     <p>Desenvolvimento</p>
