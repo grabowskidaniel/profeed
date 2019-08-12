@@ -13,6 +13,8 @@ import { Observable, interval, Subscription } from 'rxjs';
 export class HomePage implements OnInit {
 
   public usersList: Array<UserDTO> = [];
+  isItemAvailable: boolean;
+  items;
 
   constructor(public modalController:ModalController, 
     private profeedService:ProfeedService) {
@@ -27,6 +29,7 @@ export class HomePage implements OnInit {
       error  => {
         console.log("Error", error);
       })
+
   }
 
   async presentModal(userTo:UserDTO, nome: String) {
@@ -39,5 +42,27 @@ export class HomePage implements OnInit {
     });
     return await modal.present();
   }
+
+  getItems(ev: any) {
+
+    this.isItemAvailable = false;
+    this.items = Array.from(document.querySelector('.myList').children);
+    // set val to the value of the searchbar
+    const val = ev.target.value;
+    const query = ev.target.value.toLowerCase();
+    // if the value is an empty string don't filter the items
+    if (val && val.trim() != '') {
+      this.isItemAvailable = true;
+      this.items = this.items.filter((item) => {
+        const shouldShow = item.lastElementChild.firstElementChild.textContent.toLowerCase().indexOf(query) > -1;
+        item.style.display = shouldShow ? 'block' : 'none';
+      })
+    }else{
+      this.items.forEach(item => {
+        item.style.display ='block';
+      });
+    }
+  }
+  
 
 }

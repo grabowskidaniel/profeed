@@ -1,6 +1,7 @@
 package br.com.projuris.profeed.controller;
 
 import br.com.projuris.profeed.dto.CountFeedbackDTO;
+import br.com.projuris.profeed.dto.FeedBackDTO;
 import br.com.projuris.profeed.entity.Feedback;
 import br.com.projuris.profeed.service.FeedbackService;
 import io.swagger.annotations.Api;
@@ -35,15 +36,15 @@ public class FeedbackController {
 
     @GetMapping(path = "/feedback/to")
     @ApiOperation(value = "Find all feedback to.")
-    public List<Feedback> getAllTo(){
-        List<Feedback> feedbacks = this.feedbackService.findAllTo();
+    public List<FeedBackDTO> getAllTo(){
+        List<FeedBackDTO> feedbacks = this.feedbackService.findAllDTOTo();
         return feedbacks;
     }
 
     @GetMapping(path = "/feedback/from")
     @ApiOperation(value = "Find all feedback from.")
-    public List<Feedback> getAllFrom(){
-        List<Feedback> feedbacks = this.feedbackService.findAllFrom();
+    public List<FeedBackDTO> getAllFrom(){
+        List<FeedBackDTO> feedbacks = this.feedbackService.findAllDTOFrom();
         return feedbacks;
     }
 

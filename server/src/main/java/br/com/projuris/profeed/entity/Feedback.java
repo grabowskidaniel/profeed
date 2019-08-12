@@ -24,12 +24,10 @@ public class Feedback extends GenericEntity {
     private Boolean anonymous = Boolean.FALSE;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "user_from_id")
     private User userFrom;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "user_to_id")
     private User userTo;
 

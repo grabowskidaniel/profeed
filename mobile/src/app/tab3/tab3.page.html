@@ -1,9 +1,28 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Tab Three
+      Feedbacks Enviados
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content>
+  <ion-list>
+    <ng-container *ngFor="let feedbackEnviado of feedbackEnviadosList">
+        <ion-item lines="full">
+            <ion-avatar slot="start">
+              <img [src]="feedbackEnviado.photoUrlTo">
+            </ion-avatar>
+            <ion-label>
+                <ion-text color="primary">
+                    <h2>
+                      {{feedbackEnviado.nameTo}}
+                    </h2>
+                </ion-text>
+                <p>{{feedbackEnviado.text}}</p>
+            </ion-label>
+        </ion-item>
+    </ng-container>
+</ion-list>
+
+</ion-content>

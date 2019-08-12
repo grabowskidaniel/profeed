@@ -1,12 +1,18 @@
 <ion-header>
     <ion-toolbar>
-        <ion-input class="header-search-input" [placeholder]="'Quem merece seu feedback hoje?' | translate"></ion-input>
+        <!-- <ion-input class="header-search-input" [placeholder]="'Quem merece seu feedback hoje?' | translate"></ion-input> -->
+        <ion-searchbar 
+            [placeholder]="'Quem merece seu feedback hoje?'"
+            [(ngModel)]="myInput"
+            [showCancelButton]="shouldShowCancel"
+            (ionInput)="getItems($event)"
+            (ionCancel)="onCancel($event)"></ion-searchbar>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-    <ion-list>
+    <ion-list class="myList">
         <ng-container *ngFor="let user of usersList">
             <ion-item lines="full" button (click)="presentModal(user, user.nome)">
                 <ion-avatar slot="start">

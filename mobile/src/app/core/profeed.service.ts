@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { UserDTO } from '@profeed/domain/user-dto';
 import { UserListDTO } from '@profeed/domain/user-list-dto';
+import { FeedbackDTO } from '@profeed/domain/feedback-dto';
 
 
 @Injectable({
@@ -24,5 +25,13 @@ export class ProfeedService {
 
   getUsers(){
     return this.http.get<Array<UserDTO>>(`${environment.serverURL}/api/user`);
+  }
+
+  getFeedBacksEnviados(){
+    return this.http.get<Array<FeedbackDTO>>(`${environment.serverURL}/api/feedback/from`);
+  }
+
+  getFeedBacksRecebidos(){
+    return this.http.get<Array<FeedbackDTO>>(`${environment.serverURL}/api/feedback/to`);
   }
 }
