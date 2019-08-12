@@ -3,6 +3,7 @@ import { ModalController} from '@ionic/angular';
 import {FbModalComponent} from '../..//fb-modal/fb-modal.component'
 import {ProfeedService} from '@profeed/core/profeed.service'
 import { UserDTO } from '@profeed/domain/user-dto';
+import { Observable, interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -28,9 +29,13 @@ export class HomePage implements OnInit {
       })
   }
 
-  async presentModal() {
+  async presentModal(userTo:UserDTO, nome: String) {
     const modal = await this.modalController.create({
-      component: FbModalComponent
+      component: FbModalComponent,
+      componentProps: {
+        'userTo' : userTo,
+        'nome': nome
+      }
     });
     return await modal.present();
   }

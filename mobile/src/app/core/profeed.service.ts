@@ -12,8 +12,8 @@ export class ProfeedService {
 
   constructor(private http: HttpClient) { }
 
-  sendFeedback(values: { text: string; }){
-    return this.http.post(`${environment.serverURL}/api/feedback`, values).subscribe(
+  sendFeedback(feedback){
+    return this.http.post(`${environment.serverURL}/api/feedback`, feedback).subscribe(
       data  => {
         console.log("POST Request is successful ", data);
       },

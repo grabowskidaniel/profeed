@@ -28,8 +28,11 @@ public class FeedbackService {
     }
 
     public Feedback save(Feedback feedback) {
-        userRepository.findById(feedback.getUserFromId()).ifPresent(userFrom -> {
-            feedback.setUserFrom(userFrom);
+
+        String username = SecurityUtils.getCurrentUserLogin().get();
+        Optional<User> userFrom = this.userRepository.findByUsername(username);
+        userFrom.ifPresent(user -> {
+            feedback.setUserFrom(user);
         });
         userRepository.findById(feedback.getUserToId()).ifPresent(userTo -> {
             feedback.setUserTo(userTo);

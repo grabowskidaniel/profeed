@@ -8,13 +8,8 @@
 </ion-header>
 <ion-content fullscreen>
   <form onsubmit="processForm(event)">
-    <ion-title>Novo feedback para: Fulano</ion-title>
-    <!-- <ion-list lines="full" class="ion-no-margin ion-no-padding">
-      <ion-item> -->
-        <!-- <ion-label position="stacked">FeedBack</ion-label> -->
-        <ion-textarea rows="10" style="background-color: slategrey"></ion-textarea>
-      <!-- </ion-item>
-    </ion-list> -->
+    <ion-title>Novo feedback para: {{userTo.nome}}</ion-title>
+        <ion-textarea [(ngModel)]="feedback" name="feedback" rows="10" style="background-color: slategrey"></ion-textarea>
     <div class="ion-padding">
       <ion-button expand="block"  class="ion-no-margin"  (click)="send()" >Enviar :)</ion-button>
     </div>

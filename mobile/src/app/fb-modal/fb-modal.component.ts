@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ModalController} from '@ionic/angular';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -6,6 +6,7 @@ import { tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { catchError, retry } from 'rxjs/operators';
 import {ProfeedService} from '../core/profeed.service';
+import { UserDTO } from '@profeed/domain/user-dto';
 
 @Component({
   selector: 'app-fb-modal',
@@ -14,11 +15,15 @@ import {ProfeedService} from '../core/profeed.service';
 })
 export class FbModalComponent implements OnInit {
 
+  @Input() nome :string;
+  @Input() userTo : UserDTO;
+  public feedback: String;
+
   constructor(public modalController: ModalController, 
     private readonly httpClient: HttpClient,
     private profeedService: ProfeedService) { }
 
-  ngOnInit() {}
+  ngOnInit() {  }
   
   dismiss() {
     this.modalController.dismiss({
@@ -29,9 +34,11 @@ export class FbModalComponent implements OnInit {
   send(){
     console.log("enviar");
 
-    this.profeedService.sendFeedback({
-      text: 'admin'
-    });
+    var feedback : any = {};
+    feedback.text = this.feedback;
+    feedback.userToId = this.userTo.id
+
+    this.profeedService.sendFeedback(feedback);
 
     this.dismiss();
   }
