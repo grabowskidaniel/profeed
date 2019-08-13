@@ -11,19 +11,21 @@ export class Tab3Page implements OnInit {
 
   public feedbackEnviadosList: Array<FeedbackDTO> = [];
 
-  constructor(private profeedService:ProfeedService) {
+  constructor(private profeedService:ProfeedService) {}
+
+  ngOnInit() {
     this.profeedService.getFeedBacksEnviados().subscribe(data =>{
-        console.log("POST Request is successful ", data);
+        // console.log("POST Request is successful ", data);
         this.feedbackEnviadosList = data.map((element)=> new FeedbackDTO(element.id, null, element.nameTo, null,  element.photoUrlTo, element.text));
-        console.log(this.feedbackEnviadosList);
       },
       error  => {
         console.log("Error", error);
       })
   }
 
-  ngOnInit() {
-  }
 
+  ionViewWillEnter() {
+    this.ngOnInit();
+  }
 
 }

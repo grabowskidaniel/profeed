@@ -22,9 +22,8 @@ export class HomePage implements OnInit {
 
   ngOnInit() {
     this.profeedService.getUsers().subscribe(data =>{
-        console.log("POST Request is successful ", data);
+        // console.log("POST Request is successful ", data);
         this.usersList = data.map((element)=> new UserDTO(element.id, element.nome, element.photoUrl));
-        console.log(this.usersList);
       },
       error  => {
         console.log("Error", error);
@@ -32,6 +31,9 @@ export class HomePage implements OnInit {
 
   }
 
+  ionViewWillEnter() {
+    this.ngOnInit();
+  }
   async presentModal(userTo:UserDTO, nome: String) {
     const modal = await this.modalController.create({
       component: FbModalComponent,

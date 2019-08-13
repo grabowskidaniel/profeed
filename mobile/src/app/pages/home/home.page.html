@@ -11,22 +11,24 @@
 </ion-header>
 
 <ion-content>
+    <div  style="background-color: brown">
+            <ion-list class="myList">
+                <ng-container *ngFor="let user of usersList">
+                    <ion-item lines="full" button (click)="presentModal(user, user.nome)">
+                        <ion-avatar slot="start">
+                            <img [src]="user.photoUrl">
+                        </ion-avatar>
+                        <ion-label>
+                            <ion-text color="primary">
+                                <h2>
+                                    {{user.nome}}
+                                </h2>
+                            </ion-text>
+                            <p>Desenvolvimento</p>
+                        </ion-label>
+                    </ion-item>
+                </ng-container>
+            </ion-list>
+    </div>
 
-    <ion-list class="myList">
-        <ng-container *ngFor="let user of usersList">
-            <ion-item lines="full" button (click)="presentModal(user, user.nome)">
-                <ion-avatar slot="start">
-                    <img [src]="user.photoUrl">
-                </ion-avatar>
-                <ion-label>
-                    <ion-text color="primary">
-                        <h2>
-                            {{user.nome}}
-                        </h2>
-                    </ion-text>
-                    <p>Desenvolvimento</p>
-                </ion-label>
-            </ion-item>
-        </ng-container>
-    </ion-list>
 </ion-content>

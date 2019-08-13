@@ -32,8 +32,6 @@ export class FbModalComponent implements OnInit {
   }
 
   send(){
-    console.log("enviar");
-
     var feedback : any = {};
     feedback.text = this.feedback;
     feedback.userToId = this.userTo.id

@@ -11,18 +11,19 @@ export class Tab2Page {
 
   public feedbackRecebidosList: Array<FeedbackDTO> = [];
 
-  constructor(private profeedService:ProfeedService) {
+  constructor(private profeedService:ProfeedService) {}
 
+  ngOnInit() {
     this.profeedService.getFeedBacksRecebidos().subscribe(data =>{
-      console.log("POST Request is successful ", data);
-      this.feedbackRecebidosList = data.map((element)=> new FeedbackDTO(element.id, element.nameFrom, null, element.photoUrlFrom, null, element.text));
-      console.log(this.feedbackRecebidosList);
-    },
-    error  => {
-      console.log("Error", error);
-    })
+        // console.log("POST Request is successful ", data);
+        this.feedbackRecebidosList = data.map((element)=> new FeedbackDTO(element.id, element.nameFrom, null, element.photoUrlFrom, null, element.text));
+      },
+      error  => {
+        console.log("Error", error);
+      })
   }
 
-  // ngOnInit() {
-  // }
+  ionViewWillEnter() {
+    this.ngOnInit();
+  }
 }

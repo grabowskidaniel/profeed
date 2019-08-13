@@ -43,6 +43,6 @@ public class UserService {
     }
 
     public List<User> findAllUsers(){
-        return userRepository.findAllByRolesEqualsAndRolesIsNotContaining(Arrays.asList( "ROLE_USER"), Arrays.asList( "ROLE_ADMIN"));
+        return userRepository.findAllByRolesIsNotContainingAndUsernameNot(Arrays.asList( "ROLE_ADMIN"), SecurityUtils.getCurrentUserLogin().get());
     }
 }
