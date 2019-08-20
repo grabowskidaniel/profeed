@@ -11,6 +11,7 @@ import { Storage } from '@ionic/storage';
 interface LoginResponse {
   username: string;
   token: string;
+  userId: string;
 }
 
 @Injectable({
@@ -41,6 +42,7 @@ export class AuthService {
     return this.httpClient.post<LoginResponse>(`${environment.serverURL}/auth/signin`, values)
       .pipe(tap(async (response) => {
         await this.handleJwtResponse(response.token);
+        localStorage.setItem("userId", response.userId);
         return response;
       }));
   }
@@ -53,7 +55,7 @@ export class AuthService {
 
   private async handleJwtResponse(jwt: string): Promise<void> {
     this.storage.set(this.jwtTokenName, jwt);
-    localStorage.setItem(this.jwtTokenName, jwt)
+    localStorage.setItem(this.jwtTokenName, jwt);
     this.authUser.next(jwt);
   }
 }

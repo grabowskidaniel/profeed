@@ -11,7 +11,6 @@ export class AuthInterceptor implements HttpInterceptor {
     constructor(private readonly storage: Storage) { }
     intercept(req: HttpRequest<any>,
         next: HttpHandler): Observable<HttpEvent<any>> {
-
         if (localStorage.getItem('jwt_token')) {
             req = req.clone({
                 setHeaders: {

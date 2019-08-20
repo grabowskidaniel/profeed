@@ -1,5 +1,6 @@
 package br.com.projuris.profeed.controller;
 
+import br.com.projuris.profeed.entity.User;
 import br.com.projuris.profeed.repository.UserRepository;
 import br.com.projuris.profeed.security.jwt.JwtTokenProvider;
 import br.com.projuris.profeed.web.AuthenticationRequest;
@@ -35,9 +36,11 @@ public class AuthController {
         try {
             String username = data.getUsername();
             authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, data.getPassword()));
-            String token = jwtTokenProvider.createToken(username, this.users.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username " + username + "not found")).getRoles());
+            User user = this.users.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Username " + username + "not found"));
+            String token = jwtTokenProvider.createToken(username, user.getRoles());
             Map<Object, Object> model = new HashMap<>();
             model.put("username", username);
+            model.put("userId", user.getId());
             model.put("token", token);
             return ok(model);
         } catch (AuthenticationException e) {

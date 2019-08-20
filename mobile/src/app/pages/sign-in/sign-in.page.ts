@@ -47,7 +47,6 @@ export class SignInPage implements OnInit {
       username: this.form.value.username,
       password: this.form.value.password,
     }).subscribe((resp) => {
-      console.log(resp);
       this.navCtrl.navigateRoot('tab/tabs/home', {replaceUrl: true});
     });
   }

@@ -14,8 +14,9 @@ export class Tab2Page {
   constructor(private profeedService:ProfeedService) {}
 
   ngOnInit() {
+    console.log("ngOnInit tab2")
     this.profeedService.getFeedBacksRecebidos().subscribe(data =>{
-        // console.log("POST Request is successful ", data);
+        console.log("POST Request is successful ", data);
         this.feedbackRecebidosList = data.map((element)=> new FeedbackDTO(element.id, element.nameFrom, null, element.photoUrlFrom, null, element.text));
       },
       error  => {
