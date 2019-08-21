@@ -12,34 +12,34 @@ const routes: Routes = [
         children: [
           {
             path: '',
-            loadChildren: '../pages/home/home.module#HomePageModule'
+            loadChildren: './home/home.module#HomePageModule'
           }
         ]
       },
       {
-        path: 'tab2',
+        path: 'inbox',
         children: [
           {
             path: '',
-            loadChildren: '../tab2/tab2.module#Tab2PageModule'
+            loadChildren: './inbox/inbox.module#InboxModule'
           }
         ]
       },
       {
-        path: 'tab3',
+        path: 'sent',
         children: [
           {
             path: '',
-            loadChildren: '../tab3/tab3.module#Tab3PageModule'
+            loadChildren: './sent/sent.module#SentModule'
           }
         ]
       },
       {
-        path: 'tab4',
+        path: 'profile',
         children: [
           {
             path: '',
-            loadChildren: '../tab4/tab4.module#Tab4PageModule'
+            loadChildren: './profile/profile.module#ProfileModule'
           }
         ]
       },
@@ -58,9 +58,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forChild(routes)
-  ],
+  imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
 export class TabsPageRoutingModule {}

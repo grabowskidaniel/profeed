@@ -1,13 +1,11 @@
 export class UserDTO {
+  id: number;
+  nome: string;
+  photoUrl: string;
 
-    id:number;
-    nome : String;
-    photoUrl: String;
-
-    constructor(id:number, nome : String, photoUrl: String){
-        this.id = id;
-        this.nome = nome;
-        this.photoUrl = photoUrl;
-    }
-
+  constructor(id: number, nome: string, photoUrl: string) {
+    this.id = id;
+    this.nome = nome;
+    this.photoUrl = photoUrl;
+  }
 }

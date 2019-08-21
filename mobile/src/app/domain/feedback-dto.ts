@@ -1,13 +1,13 @@
 export class FeedbackDTO {
 
     id:number;
-    nameFrom : String;
-    nameTo : String;
-    photoUrlFrom: String;
-    photoUrlTo: String;
-    text: String;
+    nameFrom : string;
+    nameTo : string;
+    photoUrlFrom: string;
+    photoUrlTo: string;
+    text: string;
 
-    constructor(id:number, nameFrom : String, nameTo : String,  photoUrlFrom: String, photoUrlTo: String, text:String){
+    constructor(id:number, nameFrom : string, nameTo : string,  photoUrlFrom: string, photoUrlTo: string, text:string){
         this.id = id;
         this.nameFrom = nameFrom;
         this.nameTo = nameTo;

@@ -8,10 +8,22 @@
 </ion-header>
 <ion-content fullscreen>
   <form onsubmit="processForm(event)">
-    <ion-title>Para: {{userTo.nome}}</ion-title>
-        <ion-textarea [(ngModel)]="feedback" name="feedback" rows="10" style="border: solid 1px black"></ion-textarea>
+    <ion-title>Para: {{ userTo.nome }}</ion-title>
+    <ion-textarea
+      [(ngModel)]="feedback"
+      name="feedback"
+      rows="10"
+      style="border: solid 1px black"
+    ></ion-textarea>
     <div class="ion-padding">
-      <ion-button  expand="block" shape="round" color="secondary" size="big" (click)="send()">Enviar :)</ion-button>
+      <ion-button
+        expand="block"
+        shape="round"
+        color="secondary"
+        size="big"
+        (click)="send()"
+        >Enviar :)</ion-button
+      >
     </div>
   </form>
 </ion-content>

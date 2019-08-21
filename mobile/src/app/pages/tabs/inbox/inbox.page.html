@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Feedbacks Recebidos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ng-container *ngFor="let feedbackRecebido of feedbackRecebidosList">
+      <ion-item lines="full">
+        <ion-avatar slot="start">
+          <img [src]="feedbackRecebido.photoUrlFrom" />
+        </ion-avatar>
+        <ion-label>
+          <ion-text color="primary">
+            <h2>
+              {{ feedbackRecebido.nameFrom }}
+            </h2>
+          </ion-text>
+          <p>{{ feedbackRecebido.text }}</p>
+        </ion-label>
+      </ion-item>
+    </ng-container>
+  </ion-list>
+</ion-content>

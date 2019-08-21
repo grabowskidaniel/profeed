@@ -1,13 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Routes, RouterModule } from '@angular/router';
-
+import { RouterModule, Routes } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-
-import { HomePage } from './home.page';
-import { SharedModule } from '@profeed/shared/shared.module';
 import { FbModalComponent } from '@profeed/fb-modal/fb-modal.component';
+import { SharedModule } from '@profeed/shared/shared.module';
+import { HomePage } from './home.page';
 
 const routes: Routes = [
   {
@@ -22,9 +20,9 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     SharedModule,
-    RouterModule.forChild(routes),
+    RouterModule.forChild(routes)
   ],
-  declarations: [HomePage, FbModalComponent], entryComponents:[FbModalComponent]
+  declarations: [HomePage, FbModalComponent],
+  entryComponents: [FbModalComponent]
 })
-export class HomePageModule {
-}
+export class HomePageModule {}
